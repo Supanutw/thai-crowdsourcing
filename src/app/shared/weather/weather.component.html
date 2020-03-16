@@ -1,0 +1,45 @@
+
+<div class="row">
+    <div class="column" id="map" style="width: 50%; height:800px"> </div>
+    <div class="column2">
+        <h4> ข้อมูลพยากรณ์อากาศรายชั่วโมง (ประเทศไทย)</h4>
+        <div class="form-group">
+            <form name="form">
+               <!-- <label>ภาคระบุ:</label> -->
+                <select class="form-control" id="cmdprovince" name="cmdprovince" [(ngModel)]="province" #cmdprovince="ngModel" (change)="loadWeather()" >
+                  <option value="">เลือก ภูมิภาค</option>
+                    <option value="C">ภาคกลาง</option>
+                    <option value="N">ภาคเหนือ</option>
+                    <option value="NE">ภาคตะวันออกเฉียงเหนือ</option>
+                    <option value="E">ภาคตะวันออก</option>
+                    <option value="S">ภาคใต้</option>
+                    <option value="W">ภาคตะวันตก</option>
+                </select>
+            </form>
+           
+        </div>
+        <div class="form-group">
+          <div class="table-responsive-sm">
+            <table class="table table-sm table-dark table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">จังหวัด</th>
+                  <th scope="col">อุณหภูมิ °C</th>
+                  <th scope="col">วันที่</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of weathermodel">
+                  <th>{{ item.location.province }}</th>
+                  <th>{{ item.forecasts[0]['data']['tc'] }}</th>
+                  <th>{{ item.forecasts[0]['time'] | date:'medium' }}</th>
+                </tr>
+               
+              </tbody>
+            </table>
+          </div>
+           
+        </div>
+    </div>
+  </div>
+
